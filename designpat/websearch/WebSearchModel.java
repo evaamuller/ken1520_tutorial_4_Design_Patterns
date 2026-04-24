@@ -14,6 +14,7 @@ public class WebSearchModel {
 
     public interface QueryObserver {
         void onQuery(String query);
+        void setFilter(QueryFilter filter);
     }
 
     public WebSearchModel(File sourceFile) {

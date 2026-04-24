@@ -14,6 +14,7 @@ public class Main {
         WebSearchModel model = new WebSearchModel(inputTextFile);
         Snooper snoop = new Snooper(model);
 
+
         // Execute
         model.pretendToSearch();
     }

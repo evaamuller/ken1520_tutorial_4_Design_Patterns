@@ -1,5 +1,7 @@
 package designpat.telephone;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -8,9 +10,15 @@ import java.util.Random;
  */
 public class KeyPad {
     private final PhoneModel model;
+    private final List<Observer> observers;
 
     public KeyPad(PhoneModel model) {
         this.model = model;
+        this.observers = new ArrayList<>();
+    }
+
+    public void addObserver(Observer observer) {
+        observers.add(observer);
     }
 
     public void simulateKeyPresses(int numKeyPresses) {
@@ -20,6 +28,12 @@ public class KeyPad {
             int newDigit = rnd.nextInt(MAX_DIGIT);
             System.out.println("Pressing: " + newDigit);
             model.addDigit(newDigit);
+            for (Observer observer : observers) {
+                observer.update(newDigit, EVENT_TYPE.DIGIT);
+            }
+        }
+        for (Observer observer : observers) {
+            observer.update(numKeyPresses, EVENT_TYPE.NUMBER);
         }
     }
 

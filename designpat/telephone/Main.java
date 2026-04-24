@@ -9,6 +9,8 @@ public class Main {
         Screen screen = new Screen(model);
         KeyPad keyPad = new KeyPad(model);
 
+        keyPad.addObserver(screen);
+
         // Run the program
         keyPad.simulateKeyPresses(NUM_DIGITS);
     }
